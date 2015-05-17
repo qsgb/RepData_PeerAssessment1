@@ -25,7 +25,7 @@ hist(totalstep,15)
 mean(totalstep,na.rm=TRUE)
 median(totalstep, na.rm=TRUE)
 ```
-
+Mean total step across all days is 9354.23 while the median is 10395
 
 ## What is the average daily activity pattern?
 
@@ -37,8 +37,32 @@ intervalmean<-sapply(split(data$steps,factor),mean,na.rm=TRUE)
 plot(names(intervalmean),intervalmean,type="l", xlab="time in one day (min)",ylab="mean steps")
 names(which.max(intervalmean))
 ```
+The interval have most steps is "835".
+
 ## Imputing missing values
 
+We caculate the total number of rows containing NA, there are 2304 rows. Then we replace all these NAs by the mean steps in the corresponding interval across all days and creat a new dataset with these filling in data.
 
+```{r NAs, echo=TRUE}
+anyna<-apply(data,1,function(x)any(is.na(x)))
+sum(anyna)
+steps<-vector(length=17568)
+for(i in 1:17568){
+  if(is.na(data$steps[i])){
+    steps[i]<-intervalmean[as.character(data$interval[i])]
+  }
+  else steps[i]<-data$steps[i]
+}
+data2<-data.frame(steps=steps,date=data$date,interval=data$interval)
+```
+We caclulate the totalsteps on the new set, draw the histgram and caculate the mean and median
+
+```{r totalsteps2, echo=TRUE}
+totalstep2<-sapply(split(data2$steps,data2$date),sum,na.rm=TRUE)
+hist(totalstep2,15)
+mean(totalstep2,na.rm=TRUE)
+median(totalstep2, na.rm=TRUE)
+```
+The mean and median are the same for the new set (10766.19). Thus, through filling in NA points, we smooth the distribution of total steps in one day.
 
 ## Are there differences in activity patterns between weekdays and weekends?

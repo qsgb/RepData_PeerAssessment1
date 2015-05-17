@@ -38,7 +38,7 @@ median(totalstep, na.rm=TRUE)
 ```
 ## [1] 10395
 ```
-
+Mean total step across all days is 9354.23 while the median is 10395
 
 ## What is the average daily activity pattern?
 
@@ -60,8 +60,56 @@ names(which.max(intervalmean))
 ```
 ## [1] "835"
 ```
+The interval have most steps is "835".
+
 ## Imputing missing values
 
+We caculate the total number of rows containing NA, there are 2304 rows. Then we replace all these NAs by the mean steps in the corresponding interval across all days and creat a new dataset with these filling in data.
 
+
+```r
+anyna<-apply(data,1,function(x)any(is.na(x)))
+sum(anyna)
+```
+
+```
+## [1] 2304
+```
+
+```r
+steps<-vector(length=17568)
+for(i in 1:17568){
+  if(is.na(data$steps[i])){
+    steps[i]<-intervalmean[as.character(data$interval[i])]
+  }
+  else steps[i]<-data$steps[i]
+}
+data2<-data.frame(steps=steps,date=data$date,interval=data$interval)
+```
+We caclulate the totalsteps on the new set, draw the histgram and caculate the mean and median
+
+
+```r
+totalstep2<-sapply(split(data2$steps,data2$date),sum,na.rm=TRUE)
+hist(totalstep2,15)
+```
+
+![](PA1_template_files/figure-html/totalsteps2-1.png) 
+
+```r
+mean(totalstep2,na.rm=TRUE)
+```
+
+```
+## [1] 10766.19
+```
+
+```r
+median(totalstep2, na.rm=TRUE)
+```
+
+```
+## [1] 10766.19
+```
 
 ## Are there differences in activity patterns between weekdays and weekends?
