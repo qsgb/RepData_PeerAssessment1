@@ -64,7 +64,7 @@ The interval have most steps is "835".
 
 ## Imputing missing values
 
-We caculate the total number of rows containing NA, there are 2304 rows. Then we replace all these NAs by the mean steps in the corresponding interval across all days and creat a new dataset with these filling in data.
+We caculate the total number of rows containing NA, there are 2304 rows. Then we replace all these NAs by the mean steps in the corresponding interval across all days and creat a new dataset with these filling in data. This fillingin was imputated by a for loop, we looked at each row if there was missing value we filled it with the mean steps in this interval.
 
 
 ```r
@@ -143,3 +143,6 @@ xyplot(da$mean~da$interval|da$wek,type="l",xlab="time intervals in one day (min)
 ```
 
 ![](PA1_template_files/figure-html/draws-1.png) 
+
+
+Apparenty the weekend and weekday has different patterns, weekend has spread activity across all the day while during weekdays activity was concentrated at some points.
