@@ -115,6 +115,8 @@ The mean and median are the same for the new set (10766.19). Thus, through filli
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
+Creat the weekend and weekday factor for data2
+
 
 ```r
 wk<-weekdays(data2$date)
@@ -124,3 +126,7 @@ if(wk[i] %in% c("lundi","mardi","mercredi","jeudi","vendredi")) data2$fac[i]<-fa
    else data2$fac[i]<-fac[2]
 }
 ```
+
+Split acording to the weekdays, then caculated the mean steps arcoss weekdays and weekends. Then combine the results to one dataframe and draw the figures using lattice.
+
+
