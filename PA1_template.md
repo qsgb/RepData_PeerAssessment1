@@ -130,3 +130,16 @@ if(wk[i] %in% c("lundi","mardi","mercredi","jeudi","vendredi")) data2$fac[i]<-fa
 Split acording to the weekdays, then caculated the mean steps arcoss weekdays and weekends. Then combine the results to one dataframe and draw the figures using lattice.
 
 
+
+```r
+library(lattice)
+wkspit<-split(data2,data2$fac)
+intervalmean2_wk<-sapply(split(wkspit[[1]]$steps,as.factor(wkspit[[1]]$interval)),mean,na.rm=TRUE)
+intervalmean2_wend<-sapply(split(wkspit[[2]]$steps,as.factor(wkspit[[2]]$interval)),mean,na.rm=TRUE)
+dt1<-data.frame(interval=as.numeric(names(intervalmean2_wk)),mean=intervalmean2_wk,wek=fac[1])
+dt2<-data.frame(interval=as.numeric(names(intervalmean2_wk)),mean=intervalmean2_wend,wek=fac[2])
+da<-rbind(dt1,dt2)
+xyplot(da$mean~da$interval|da$wek,type="l",xlab="time intervals in one day (min)",ylab="mean steps",layout=c(1,2))
+```
+
+![](PA1_template_files/figure-html/draws-1.png) 

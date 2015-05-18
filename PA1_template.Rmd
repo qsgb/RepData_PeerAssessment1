@@ -82,12 +82,10 @@ Split acording to the weekdays, then caculated the mean steps arcoss weekdays an
 
 
 ```{r draws, echo=TRUE}
-
 library(lattice)
-
 wkspit<-split(data2,data2$fac)
-
-intervalmean2_wk<-sapply(split(wkspit[[1]]$steps,as.factor(wkspit[[1]]$interval)),mean,na.rm=TRUE) intervalmean2_wend<-sapply(split(wkspit[[2]]$steps,as.factor(wkspit[[2]]$interval)),mean,na.rm=TRUE)
+intervalmean2_wk<-sapply(split(wkspit[[1]]$steps,as.factor(wkspit[[1]]$interval)),mean,na.rm=TRUE)
+intervalmean2_wend<-sapply(split(wkspit[[2]]$steps,as.factor(wkspit[[2]]$interval)),mean,na.rm=TRUE)
 dt1<-data.frame(interval=as.numeric(names(intervalmean2_wk)),mean=intervalmean2_wk,wek=fac[1])
 dt2<-data.frame(interval=as.numeric(names(intervalmean2_wk)),mean=intervalmean2_wend,wek=fac[2])
 da<-rbind(dt1,dt2)
