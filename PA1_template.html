@@ -115,9 +115,16 @@ hist(totalstep2,15)</code></pre>
 <pre><code>## [1] 10766.19</code></pre>
 <pre class="r"><code>median(totalstep2, na.rm=TRUE)</code></pre>
 <pre><code>## [1] 10766.19</code></pre>
+<p>The mean and median are the same for the new set (10766.19). Thus, through filling in NA points, we smooth the distribution of total steps in one day.</p>
 </div>
 <div id="are-there-differences-in-activity-patterns-between-weekdays-and-weekends" class="section level2">
 <h2>Are there differences in activity patterns between weekdays and weekends?</h2>
+<pre class="r"><code>wk&lt;-weekdays(data2$date)
+fac&lt;-as.factor(c(&quot;weekday&quot;,&quot;weekend&quot;))
+for(i in 1:17568){
+if(wk[i] %in% c(&quot;lundi&quot;,&quot;mardi&quot;,&quot;mercredi&quot;,&quot;jeudi&quot;,&quot;vendredi&quot;)) data2$fac[i]&lt;-fac[1]
+   else data2$fac[i]&lt;-fac[2]
+}</code></pre>
 </div>
 
 

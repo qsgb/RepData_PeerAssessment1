@@ -111,5 +111,16 @@ median(totalstep2, na.rm=TRUE)
 ```
 ## [1] 10766.19
 ```
+The mean and median are the same for the new set (10766.19). Thus, through filling in NA points, we smooth the distribution of total steps in one day.
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+
+```r
+wk<-weekdays(data2$date)
+fac<-as.factor(c("weekday","weekend"))
+for(i in 1:17568){
+if(wk[i] %in% c("lundi","mardi","mercredi","jeudi","vendredi")) data2$fac[i]<-fac[1]
+   else data2$fac[i]<-fac[2]
+}
+```
