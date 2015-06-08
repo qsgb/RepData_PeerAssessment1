@@ -66,8 +66,8 @@ img {
 
 <div id="loading-and-preprocessing-the-data" class="section level2">
 <h2>Loading and preprocessing the data</h2>
-<p>Loading the data form the csv file, then transform the date column to standard time format in R</p>
-<pre class="r"><code>data&lt;-read.csv(&quot;activity.csv&quot;,header=TRUE)
+<p>Loading the data form the ziped csv file, then transform the date column to standard time format in R</p>
+<pre class="r"><code>data &lt;- read.csv(unz(&quot;activity.zip&quot;, &quot;activity.csv&quot;),header = TRUE)
 data$date&lt;-as.Date(as.character(data$date),&quot;%Y-%m-%d&quot;)</code></pre>
 </div>
 <div id="what-is-mean-total-number-of-steps-taken-per-day" class="section level2">

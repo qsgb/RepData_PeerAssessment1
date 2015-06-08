@@ -3,10 +3,10 @@
 
 ## Loading and preprocessing the data
 
-Loading the data form the csv file, then transform the date column to standard time format in R
+Loading the data form the ziped csv file, then transform the date column to standard time format in R
 
 ```r
-data<-read.csv("activity.csv",header=TRUE)
+data <- read.csv(unz("activity.zip", "activity.csv"),header = TRUE)
 data$date<-as.Date(as.character(data$date),"%Y-%m-%d")
 ```
 
